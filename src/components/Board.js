@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 // Components
 import Square from "./Square";
 
 const Board = (props) => {
   const {
-
     gameState,
     setGameState,
     playerOne,
@@ -27,22 +26,19 @@ const Board = (props) => {
   ]);
 
   const changePlayer = (number) => {
-    if (number === 1) setCurrentPlayer("playerTwo")
-    if (number === 2) setCurrentPlayer("playerOne")
-
-  }
+    if (number === 1) setCurrentPlayer("playerTwo");
+    if (number === 2) setCurrentPlayer("playerOne");
+  };
 
   const handleClick = (i) => {
     if (currentPlayer === "playerOne") {
-    setGameBoard(...gameBoard, gameBoard[i] === playerOne.symbol )
-    changePlayer(1)
-  } else (currentPlayer === "playerTwo") {
-    setGameBoard(...gameBoard, gameBoard[i] === playerTwo.symbol)
-    changePlayer(2)
-  }
+      setGameBoard((gameBoard[i] = playerOne.symbol));
+      changePlayer(1);
+    } else if (currentPlayer === "playerTwo") {
+      setGameBoard(...gameBoard, gameBoard[i] === playerTwo.symbol);
+      changePlayer(2);
+    }
   };
-
-
 
   const calculateWinner = (gameBoard) => {
     const winConditions = [
@@ -81,22 +77,16 @@ const Board = (props) => {
 
   // JSX RETURN
   return (
-    <div className="board">
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+    <div className="container grid grid-cols-3 border-2 border-gray-400 gap-4 p-4 w-auto rounded-lg">
+      {renderSquare(0)}
+      {renderSquare(1)}
+      {renderSquare(2)}
+      {renderSquare(3)}
+      {renderSquare(4)}
+      {renderSquare(5)}
+      {renderSquare(6)}
+      {renderSquare(7)}
+      {renderSquare(8)}
     </div>
   );
 };

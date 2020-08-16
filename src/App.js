@@ -22,7 +22,7 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto  ">
       <Board
         currentPlayer={currentPlayer}
         setCurrentPlayer={setCurrentPlayer}
