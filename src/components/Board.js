@@ -11,19 +11,9 @@ const Board = (props) => {
     currentPlayer,
     setCurrentPlayer,
     announceWinner,
+    gameBoard,
+    setGameBoard,
   } = props;
-
-  const [gameBoard, setGameBoard] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ]);
 
   ///////////////////
   // CHANGE PLAYER //
@@ -128,7 +118,7 @@ const Board = (props) => {
   // JSX RETURN //
   ////////////////////////////
   return (
-    <div className="container grid grid-cols-3 border-2 border-gray-400 gap-4 p-4 w-auto rounded-lg">
+    <div className="container grid grid-cols-3 border-2 border-gray-400 gap-4 p-4 w-auto rounded-lg bg-gray-100">
       {renderSquare(0)}
       {renderSquare(1)}
       {renderSquare(2)}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // Components
 import Board from "./components/Board";
 import AnnounceModal from "./components/AnnounceModal";
+import ScoreBoard from "./components/ScoreBoard";
 
 const App = () => {
   ////////////////
@@ -23,20 +24,84 @@ const App = () => {
     gameOver: false,
     gameWinner: "",
   });
+  const [isOpen, setModal] = useState(false);
+  const [winMessage, setWinMessage] = useState(null);
+  const [gameBoard, setGameBoard] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const [score, setScore] = useState({
+    playerOneWins: 0,
+    playerTwoWins: 0,
+  });
   ///////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    let p1winsFromStorage = parseInt(localStorage.getItem("playerOneWins"));
+    let p2winsFromStorage = parseInt(localStorage.getItem("playerTwoWins"));
+
+    setScore({
+      playerOneWins: p1winsFromStorage,
+      playerTwoWins: p2winsFromStorage,
+    });
+  }, []);
+
+  useEffect(() => {
+    const { playerOneWins, playerTwoWins } = score;
+    const setScoreToLocal = () => {
+      localStorage.setItem("playerOneWins", playerOneWins);
+      localStorage.setItem("playerTwoWins", playerTwoWins);
+    };
+    setScoreToLocal();
+  }, [score]);
+
+  const changeScoreBoard = (winner) => {
+    console.log("winner inside changeScoreBoard is ", winner);
+
+    if (playerOne.symbol === winner) {
+      console.log("changing player one score is running");
+      setScore({ ...score, playerOneWins: score.playerOneWins + 1 });
+    } else if (playerTwo.symbol === winner) {
+      console.log("changing player one score is running");
+      setScore({ ...score, playerTwoWins: score.playerTwoWins + 1 });
+    }
+  };
 
   //////////////////////
   // ANNOUNCE WINNER //
   ///////////////////////////////
   const announceWinner = (winner) => {
+    setWinMessage(`${winner} is the winner!!`);
     console.log(`${winner} is the winner!!`);
+    setModal(true);
+    changeScoreBoard(winner);
+  };
+
+  /////////////////
+  // RESET GAME //
+  ///////////////////////////////
+  const resetGame = () => {
+    setGameState({
+      activeGame: true,
+      gameOver: false,
+      gameWinner: "",
+    });
+    setGameBoard(["", "", "", "", "", "", "", "", ""]);
+    setCurrentPlayer("playerOne");
   };
 
   //////////
   // JSX //
   /////////////////////////////
   const AppJSX = (
-    <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto  ">
+    <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto">
       <Board
         currentPlayer={currentPlayer}
         setCurrentPlayer={setCurrentPlayer}
@@ -45,8 +110,17 @@ const App = () => {
         playerOne={playerOne}
         playerTwo={playerTwo}
         announceWinner={announceWinner}
+        gameBoard={gameBoard}
+        setGameBoard={setGameBoard}
       />
-      <AnnounceModal gameState={gameState} />
+      <AnnounceModal
+        isOpen={isOpen}
+        setModal={setModal}
+        gameState={gameState}
+        winMessage={winMessage}
+        resetGame={resetGame}
+      />
+      <ScoreBoard score={score} />
     </div>
   );
 
