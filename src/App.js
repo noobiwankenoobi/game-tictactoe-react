@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/Board";
 
 function App() {
+  ////////////////
+  // APP STATE //
+  ////////////////////////////
   const [currentPlayer, setCurrentPlayer] = useState("playerOne");
   const [playerOne, setPlayerOne] = useState({
     name: "Player One",
@@ -14,13 +17,16 @@ function App() {
     wins: 0,
     symbol: "O",
   });
-
   const [gameState, setGameState] = useState({
     activeGame: true,
     gameOver: false,
     gameWinner: "",
   });
+  ///////////////////////////////////////////////////////////
 
+  //////////////////////
+  // ANNOUNCE WINNER //
+  ///////////////////////////////
   const announceWinner = (winner) => {
     console.log(`${winner} is the winner!!`);
   };
