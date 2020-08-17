@@ -21,6 +21,10 @@ function App() {
     gameWinner: "",
   });
 
+  const announceWinner = (winner) => {
+    console.log(`${winner} is the winner!!`);
+  };
+
   return (
     <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto  ">
       <Board
@@ -30,6 +34,7 @@ function App() {
         setGameState={setGameState}
         playerOne={playerOne}
         playerTwo={playerTwo}
+        announceWinner={announceWinner}
       />
     </div>
   );

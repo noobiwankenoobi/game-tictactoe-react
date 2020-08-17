@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Square = (props) => {
-  const { value } = props;
+  const { value, i, handleClick } = props;
 
   return (
-    <div className="square flex items-center justify-center border border-gray-400 h-20 w-20 rounded-lg">
+    <div
+      onClick={() => handleClick(i)}
+      className="square flex items-center justify-center border border-gray-400 h-20 w-20 rounded-md"
+    >
       {value}
     </div>
   );

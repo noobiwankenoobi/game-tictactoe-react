@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Components
 import Square from "./Square";
 
@@ -10,6 +10,7 @@ const Board = (props) => {
     playerTwo,
     currentPlayer,
     setCurrentPlayer,
+    announceWinner,
   } = props;
 
   const [gameBoard, setGameBoard] = useState([
@@ -22,24 +23,59 @@ const Board = (props) => {
     "",
     "",
     "",
-    "",
   ]);
 
-  const changePlayer = (number) => {
-    if (number === 1) setCurrentPlayer("playerTwo");
-    if (number === 2) setCurrentPlayer("playerOne");
+  ///////////////////
+  // CHANGE PLAYER //
+  /////////////////////////////
+  const changePlayer = () => {
+    if (currentPlayer === "playerOne") setCurrentPlayer("playerTwo");
+    if (currentPlayer === "playerTwo") setCurrentPlayer("playerOne");
   };
 
+  // TRIAL 1
+  // const handleClick = (i) => {
+  //   console.log("handleClick is running at index ", i);
+  //   console.log("gameBoard is ", gameBoard);
+
+  //   if (currentPlayer === "playerOne") {
+  //     setGameBoard((gameBoard) => [
+  //       ...gameBoard,
+  //       (gameBoard[i] = playerOne.symbol),
+  //     ]);
+  //     changePlayer(1);
+  //   } else if (currentPlayer === "playerTwo") {
+  //     setGameBoard((gameBoard) => [
+  //       ...gameBoard,
+  //       (gameBoard[i] = playerTwo.symbol),
+  //     ]);
+  //     changePlayer(2);
+  //   }
+  // };
+
+  ///////////////////
+  // HANDLE CLICK //
+  /////////////////////////////
   const handleClick = (i) => {
+    console.log("handleClick is running at index ", i);
+    console.log("gameBoard is ", gameBoard);
+
     if (currentPlayer === "playerOne") {
-      setGameBoard((gameBoard[i] = playerOne.symbol));
-      changePlayer(1);
+      const board = gameBoard;
+      board[i] = playerOne.symbol;
+      setGameBoard(board);
+      changePlayer();
     } else if (currentPlayer === "playerTwo") {
-      setGameBoard(...gameBoard, gameBoard[i] === playerTwo.symbol);
-      changePlayer(2);
+      const board = gameBoard;
+      board[i] = playerTwo.symbol;
+      setGameBoard(board);
+      changePlayer();
     }
   };
 
+  ///////////////////////
+  // CALCULATE WINNER //
+  ///////////////////////////////////
   const calculateWinner = (gameBoard) => {
     const winConditions = [
       [0, 1, 2],
@@ -64,18 +100,33 @@ const Board = (props) => {
     return null;
   };
 
-  const winner = calculateWinner(gameBoard);
-  if (winner) {
-    setGameState({ activeGame: false, gameOver: true, gameWinner: winner });
-  } else {
-  }
+  /////////////////
+  // USE EFFECT //
+  ///////////////////////////////////
+  useEffect(() => {
+    if (gameState.activeGame) {
+      const winner = calculateWinner(gameBoard);
+      if (winner) {
+        setGameState({ activeGame: false, gameOver: true, gameWinner: winner });
+        announceWinner(winner);
+      } else {
+        console.log("No winner yet");
+      }
+    }
+  }, [gameBoard, setGameState, currentPlayer]);
 
-  // RENDER SQUARES
+  //////////////////////
+  // RENDER SQUARES //
+  ///////////////////////////////////
   const renderSquare = (i) => {
-    return <Square value={gameBoard[i]} onClick={() => handleClick(i)} />;
+    return (
+      <Square key={i} value={gameBoard[i]} i={i} handleClick={handleClick} />
+    );
   };
 
-  // JSX RETURN
+  /////////////////
+  // JSX RETURN //
+  ////////////////////////////
   return (
     <div className="container grid grid-cols-3 border-2 border-gray-400 gap-4 p-4 w-auto rounded-lg">
       {renderSquare(0)}
