@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 // Components
 import Board from "./components/Board";
+import AnnounceModal from "./components/AnnounceModal";
 
-function App() {
+const App = () => {
   ////////////////
   // APP STATE //
   ////////////////////////////
@@ -31,7 +32,10 @@ function App() {
     console.log(`${winner} is the winner!!`);
   };
 
-  return (
+  //////////
+  // JSX //
+  /////////////////////////////
+  const AppJSX = (
     <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto  ">
       <Board
         currentPlayer={currentPlayer}
@@ -42,8 +46,11 @@ function App() {
         playerTwo={playerTwo}
         announceWinner={announceWinner}
       />
+      <AnnounceModal gameState={gameState} />
     </div>
   );
-}
+
+  return AppJSX;
+};
 
 export default App;
