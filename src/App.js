@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/Board";
 import AnnounceModal from "./components/AnnounceModal";
 import ScoreBoard from "./components/ScoreBoard";
+import Header from "./components/Header";
 
 const App = () => {
   ////////////////
@@ -26,33 +27,28 @@ const App = () => {
   });
   const [isOpen, setModal] = useState(false);
   const [winMessage, setWinMessage] = useState(null);
-  const [gameBoard, setGameBoard] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ]);
+  const boardInitialState = ["", "", "", "", "", "", "", "", ""];
+  const [gameBoard, setGameBoard] = useState(boardInitialState);
   const [score, setScore] = useState({
     playerOneWins: 0,
     playerTwoWins: 0,
   });
   ///////////////////////////////////////////////////////////
 
+  //////////////////
+  // USE EFFECTS //
+  //////////////////////////////////////
+  // Sets the score from any existing localStorage after pageload and refresh
   useEffect(() => {
     let p1winsFromStorage = parseInt(localStorage.getItem("playerOneWins"));
     let p2winsFromStorage = parseInt(localStorage.getItem("playerTwoWins"));
-
     setScore({
       playerOneWins: p1winsFromStorage,
       playerTwoWins: p2winsFromStorage,
     });
   }, []);
 
+  // Sets the current score to localStorage
   useEffect(() => {
     const { playerOneWins, playerTwoWins } = score;
     const setScoreToLocal = () => {
@@ -62,6 +58,9 @@ const App = () => {
     setScoreToLocal();
   }, [score]);
 
+  ////////////////////////
+  // CHANGE SCOREBOARD //
+  ////////////////////////////////////////
   const changeScoreBoard = (winner) => {
     console.log("winner inside changeScoreBoard is ", winner);
 
@@ -102,6 +101,7 @@ const App = () => {
   /////////////////////////////
   const AppJSX = (
     <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto">
+      <Header />
       <Board
         currentPlayer={currentPlayer}
         setCurrentPlayer={setCurrentPlayer}
