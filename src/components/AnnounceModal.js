@@ -1,29 +1,110 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const AnnounceModal = (props) => {
-  const { gameState, isOpen, setModal, winMessage, resetGame } = props;
+  const {
+    gameState,
+    isOpen,
+    setModal,
+    winMessage,
+    resetGame,
+    currentPlayer,
+    setCurrentPlayer,
+  } = props;
   const { gameOver, gameWinner } = gameState;
 
-  const handleClick = () => {
-    setModal(false);
-    resetGame();
+  const [modalType, setModalType] = useState("winner");
+  const [deciding, setDeciding] = useState(false);
+
+  ////////////////////////////
+  // DECIDE WHO GOES FIRST //
+  //////////////////////////////////////
+  const decidePlayer = () => {
+    console.log("Deciding who goes first...");
+    setModalType("thinking");
+    setDeciding(true);
+    const whoGoesNext = () => {
+      let num = Math.random();
+      console.log("num is ", num);
+      let player = num > 0.5 ? "playerOne" : "playerTwo";
+      console.log("player is ", player);
+      return player;
+    };
+
+    const nextPlayer = whoGoesNext();
+    setCurrentPlayer(nextPlayer);
+    setDeciding(false);
+
+    // Put on a set timeout (math.random)
+    // Assign a new currentPlayer based on this
+    // Announce the player who goes first in the modal
+    // show a "start" button, then...
   };
 
-  const modalJSX = (
-    <div className="flex items-center justify-center h-40 w-64 absolute mx-auto my-auto bg-gray-100 shadow-lg border border-gray-600 border-solid rounded-lg">
-      <div className="modal-body flex flex-col items-center justify-center space-y-2  bg-gray-100">
-        <h1>{winMessage}</h1>
-        <button
-          onClick={handleClick}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-        >
-          Start New Game
-        </button>
+  const startNextGame = () => {
+    resetGame();
+    setModal(false);
+    setModalType("winner");
+  };
+
+  //////////////////////////
+  // HANDLE BUTTON CLICK //
+  ////////////////////////////////////
+  const handleClick = () => {
+    decidePlayer();
+  };
+
+  ///////////////////////
+  // WINNER MODAL JSX //
+  ///////////////////////////////////
+  const WinnerModalJSX = (
+    <div className="overlay w-screen h-screen fixed top-0 bottom-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-10">
+      <div className="flex items-center justify-center h-auto w-full absolute mx-auto my-auto p-20 bg-gray-900 bg-opacity-75 shadow-lg border border-cyberdesatblue-100 border-solid border-r-0 border-l-0 rounded-lg">
+        <div className="modal-body flex flex-col items-center justify-center space-y-4 ">
+          <span className="text-3xl text-cyberlightblue-100 text-opacity-75">
+            {winMessage}
+          </span>
+          <button
+            onClick={handleClick}
+            className="font-bold py-2 px-4 bg-gray-900 bg-opacity-50 border border-cyberhotpink-100 rounded-md text-cyberburnorange-100 transition ease-in-out duration-300 transform hover:text-cyberdesatyellow-100 hover:text-opacity-75 hover:bg-cyberhotpink-100 hover:scale-110 hover:bg-opacity-50 hover:border-opacity-50"
+          >
+            next game
+          </button>
+        </div>
       </div>
     </div>
   );
 
-  const AnnounceModalJSX = !isOpen ? null : modalJSX;
+  // Insert these into thinking modal based on deciding state
+  const DecidingJSX = null;
+
+  const DecidedJSX = null;
+
+  /////////////////////
+  // THINKING MODAL //
+  /////////////////////////////
+  const ThinkingModalJSX = (
+    <div className="overlay w-screen h-screen fixed top-0 bottom-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-10">
+      <div className="flex items-center justify-center h-auto w-full absolute mx-auto my-auto p-20 bg-gray-900 bg-opacity-75 shadow-lg border border-cyberdesatblue-100 border-solid border-r-0 border-l-0 rounded-lg">
+        <div className="modal-body flex flex-col items-center justify-center space-y-4 ">
+          <span className="text-3xl text-cyberlightblue-100 text-opacity-75">
+            calculating who goes first...
+          </span>
+          <button
+            onClick={startNextGame}
+            className="font-bold py-2 px-4 bg-gray-900 bg-opacity-50 border border-cyberhotpink-100 rounded-md text-cyberburnorange-100 transition ease-in-out duration-300 transform hover:text-cyberdesatyellow-100 hover:text-opacity-75 hover:bg-cyberhotpink-100 hover:scale-110 hover:bg-opacity-50 hover:border-opacity-50"
+          >
+            start
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // MODAL TYPE LOGIC //
+  const ModalsJSX = modalType === "winner" ? WinnerModalJSX : ThinkingModalJSX;
+
+  // OPEN AND CLOSE LOGIC //
+  const AnnounceModalJSX = !isOpen ? null : ModalsJSX;
 
   return AnnounceModalJSX;
 };

@@ -13,6 +13,7 @@ const Board = (props) => {
     announceWinner,
     gameBoard,
     setGameBoard,
+    resetGame,
   } = props;
 
   const [winningRow, setWinningRow] = useState([]);
@@ -124,27 +125,36 @@ const Board = (props) => {
         handleClick={handleClick}
         gameState={gameState}
         winningRow={winningRow}
+        resetGame={resetGame}
       />
     );
   };
+
+  const PlayerTurnJSX = gameState.activeGame ? (
+    <span className="text-sm text-cyberdesatyellow-100 text-opacity-75 animate-bounce">{`${currentPlayer}'s turn`}</span>
+  ) : (
+    <span className="text-sm text-cyberdesatyellow-100 text-opacity-75">
+      game over
+    </span>
+  );
 
   /////////////////
   // JSX RETURN //
   ////////////////////////////
   return (
-    <div
-      className="container grid grid-cols-3 gap-4 p-4 w-auto rounded-lg fixed"
-      style={{ color: "#60C5DB" }}
-    >
-      {renderSquare(0)}
-      {renderSquare(1)}
-      {renderSquare(2)}
-      {renderSquare(3)}
-      {renderSquare(4)}
-      {renderSquare(5)}
-      {renderSquare(6)}
-      {renderSquare(7)}
-      {renderSquare(8)}
+    <div className="flex flex-col justify-center items-center fixed mx-auto">
+      {PlayerTurnJSX}
+      <div className="container grid grid-cols-3 gap-4 p-4 w-auto rounded-lg text-cyberlightblue-100">
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
     </div>
   );
 };

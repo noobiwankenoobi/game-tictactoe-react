@@ -18,6 +18,7 @@ module.exports = {
       cyberorange: { 100: "#FC9B0B" },
       cyberblack: { 100: "#2D3848" },
       cyberyellow: { 100: "#FBEC09" },
+      cyberdesatyellow: { 100: "#FEFBAD" },
       cyberdesatblue: { 100: " #4A9998" },
       cyberlightblue: { 100: "#53BCDC" },
       cyberburnorange: { 100: "#C74F50" },

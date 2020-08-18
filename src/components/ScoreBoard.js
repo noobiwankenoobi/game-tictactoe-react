@@ -8,7 +8,7 @@ const ScoreBoard = (props) => {
       <div
         className={`player-one-box flex flex-col bg-gray-800 bg-opacity-25 rounded-tl-md ${
           currentPlayer === "playerOne"
-            ? "animate-pulse border border-solid  border-cyberhotpink-100 border-b-0"
+            ? "border border-solid  border-cyberhotpink-100 border-b-0"
             : "border border-solid border-gray-800 border-b-0"
         }`}
       >
@@ -22,7 +22,7 @@ const ScoreBoard = (props) => {
       <div
         className={`player-one-box flex flex-col bg-gray-800 bg-opacity-25 rounded-tr-md ${
           currentPlayer === "playerTwo"
-            ? "animate-pulse border border-solid  border-cyberhotpink-100 border-b-0"
+            ? "border border-solid  border-cyberhotpink-100 border-b-0"
             : "border border-solid border-gray-800 border-b-0"
         }`}
       >

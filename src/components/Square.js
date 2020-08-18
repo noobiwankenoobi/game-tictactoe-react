@@ -41,7 +41,7 @@ const Square = (props) => {
   const clickedSquareJSX = (
     <div
       onClick={() => handleClick(i)}
-      className={`square flex items-center justify-center bg-gray-800 bg-opacity-25 border-2 border-cyberhotpink-100 h-32 w-32 rounded-md text-5xl shadow-xl ${
+      className={`square flex items-center justify-center bg-gray-800 bg-opacity-25 border-2 border-cyberhotpink-100 h-32 w-32 rounded-md text-5xl shadow-2xl ${
         winnerSquare ? "animate-bounce" : ""
       }`}
     >
@@ -52,7 +52,7 @@ const Square = (props) => {
   const emptySquareJSX = (
     <div
       onClick={() => handleClick(i)}
-      className="square flex items-center justify-center border border-cyberburnorange-100 bg-gray-800 bg-opacity-25 border-dashed border-opacity-25 h-32 w-32 rounded-md text-4xl shadow-md"
+      className="square flex items-center justify-center h-32 w-32 border border-1 border-gray-800 border-opacity-25 rounded-md bg-gray-800 bg-opacity-25 text-4xl shadow-md transition duration-500 ease-in-out transform hover:scale-105 hover:border-cyberburnorange-100 hover:border-dashed hover:border-opacity-50"
     >
       {value}
     </div>

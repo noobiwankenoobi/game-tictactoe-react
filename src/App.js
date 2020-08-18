@@ -12,12 +12,12 @@ const App = () => {
   // Players
   const [currentPlayer, setCurrentPlayer] = useState("playerOne");
   const [playerOne, setPlayerOne] = useState({
-    name: "Player One",
+    name: "playerOne",
     wins: 0,
     symbol: "X",
   });
   const [playerTwo, setPlayerTwo] = useState({
-    name: "Player Two",
+    name: "playerTwo",
     wins: 0,
     symbol: "O",
   });
@@ -81,8 +81,13 @@ const App = () => {
   // ANNOUNCE WINNER //
   ///////////////////////////////
   const announceWinner = (winner) => {
-    setWinMessage(`${winner} wins!!`);
-    console.log(`${winner} wins!!`);
+    // Get player name from winner symbol
+    if (playerOne.symbol === winner) {
+      setWinMessage(`${playerOne.name} wins!!`);
+    } else if (playerTwo.symbol === winner) {
+      setWinMessage(`${playerTwo.name} wins!!`);
+    }
+    // Then...
     setModal(true);
     changeScoreBoard(winner);
   };
@@ -97,7 +102,8 @@ const App = () => {
       gameWinner: "",
     });
     setGameBoard(["", "", "", "", "", "", "", "", ""]);
-    setCurrentPlayer("playerOne");
+    setWinMessage(null);
+    // setCurrentPlayer("playerOne");
   };
 
   //////////
@@ -116,6 +122,7 @@ const App = () => {
         announceWinner={announceWinner}
         gameBoard={gameBoard}
         setGameBoard={setGameBoard}
+        resetGame={resetGame}
       />
       <AnnounceModal
         isOpen={isOpen}
@@ -123,6 +130,8 @@ const App = () => {
         gameState={gameState}
         winMessage={winMessage}
         resetGame={resetGame}
+        currentPlayer={currentPlayer}
+        setCurrentPlayer={setCurrentPlayer}
       />
       <ScoreBoard score={score} currentPlayer={currentPlayer} />
     </div>
