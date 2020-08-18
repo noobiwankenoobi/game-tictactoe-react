@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const AnnounceModal = (props) => {
   const {
@@ -54,7 +54,7 @@ const AnnounceModal = (props) => {
         thinking
       </span>
 
-      <span className="text-lg text-cyberburnorange-100 text-opacity-75">
+      <span className="text-sm sm:text-lg text-center text-cyberburnorange-100 text-opacity-75">
         ai is calculating who goes first...
       </span>
     </>
@@ -62,7 +62,7 @@ const AnnounceModal = (props) => {
 
   const DecidedJSX = (
     <>
-      <span className="text-2xl text-cyberlightblue-100 text-opacity-100">
+      <span className="text-md sm:text-2xl text-cyberlightblue-100 text-opacity-100">
         {`${currentPlayer} goes first!`}
       </span>
 
@@ -97,7 +97,7 @@ const AnnounceModal = (props) => {
     <div className="modal-overlay w-screen h-screen fixed top-0 bottom-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-10">
       <div className="modal-main flex items-center justify-center h-auto w-full absolute mx-auto my-auto p-20 bg-gray-900 bg-opacity-75 shadow-lg border border-cyberdesatblue-100 border-solid border-r-0 border-l-0 rounded-lg">
         <div className="modal-body flex flex-col items-center justify-center space-y-4 ">
-          <span className="text-3xl text-cyberlightblue-100 text-opacity-75">
+          <span className="text-xl sm:text-3xl text-cyberlightblue-100 text-opacity-75">
             {winMessage}
           </span>
           <button

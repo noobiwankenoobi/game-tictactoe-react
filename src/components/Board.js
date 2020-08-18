@@ -26,33 +26,12 @@ const Board = (props) => {
     if (currentPlayer === "playerTwo") setCurrentPlayer("playerOne");
   };
 
-  // TRIAL 1
-  // const handleClick = (i) => {
-  //   console.log("handleClick is running at index ", i);
-  //   console.log("gameBoard is ", gameBoard);
-
-  //   if (currentPlayer === "playerOne") {
-  //     setGameBoard((gameBoard) => [
-  //       ...gameBoard,
-  //       (gameBoard[i] = playerOne.symbol),
-  //     ]);
-  //     changePlayer(1);
-  //   } else if (currentPlayer === "playerTwo") {
-  //     setGameBoard((gameBoard) => [
-  //       ...gameBoard,
-  //       (gameBoard[i] = playerTwo.symbol),
-  //     ]);
-  //     changePlayer(2);
-  //   }
-  // };
-
   ///////////////////
   // HANDLE CLICK //
   /////////////////////////////
   const handleClick = (i) => {
-    console.log("handleClick is running at index ", i);
-    console.log("gameBoard is ", gameBoard);
-
+    // console.log("handleClick is running at index ", i);
+    // console.log("gameBoard is ", gameBoard);
     if (currentPlayer === "playerOne") {
       const board = gameBoard;
       board[i] = playerOne.symbol;
@@ -88,10 +67,10 @@ const Board = (props) => {
         gameBoard[a] === gameBoard[c]
       ) {
         setWinningRow(winConditions[i]);
-        console.log(
-          "winConditions[i] inside calculateWinner is ",
-          winConditions[i]
-        );
+        // console.log(
+        //   "winConditions[i] inside calculateWinner is ",
+        //   winConditions[i]
+        // );
         return gameBoard[a];
       }
     }
@@ -108,7 +87,7 @@ const Board = (props) => {
         setGameState({ activeGame: false, gameOver: true, gameWinner: winner });
         announceWinner(winner);
       } else {
-        console.log("No winner yet");
+        // console.log("No winner yet");
       }
     }
   }, [gameBoard, setGameState, currentPlayer]);
