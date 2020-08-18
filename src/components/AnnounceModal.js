@@ -10,10 +10,15 @@ const AnnounceModal = (props) => {
   };
 
   const modalJSX = (
-    <div className="flex items-center justify-center h-40 w-64 absolute mx-auto my-auto bg-gray-100 shadow-md border border-gray-600 border-solid">
+    <div className="flex items-center justify-center h-40 w-64 absolute mx-auto my-auto bg-gray-100 shadow-lg border border-gray-600 border-solid rounded-lg">
       <div className="modal-body flex flex-col items-center justify-center space-y-2  bg-gray-100">
         <h1>{winMessage}</h1>
-        <button onClick={handleClick}>Start New Game</button>
+        <button
+          onClick={handleClick}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Start New Game
+        </button>
       </div>
     </div>
   );

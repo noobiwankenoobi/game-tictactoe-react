@@ -9,6 +9,7 @@ const App = () => {
   ////////////////
   // APP STATE //
   ////////////////////////////
+  // Players
   const [currentPlayer, setCurrentPlayer] = useState("playerOne");
   const [playerOne, setPlayerOne] = useState({
     name: "Player One",
@@ -20,19 +21,22 @@ const App = () => {
     wins: 0,
     symbol: "O",
   });
+  // Game
   const [gameState, setGameState] = useState({
     activeGame: true,
     gameOver: false,
     gameWinner: "",
   });
-  const [isOpen, setModal] = useState(false);
-  const [winMessage, setWinMessage] = useState(null);
   const boardInitialState = ["", "", "", "", "", "", "", "", ""];
   const [gameBoard, setGameBoard] = useState(boardInitialState);
   const [score, setScore] = useState({
     playerOneWins: 0,
     playerTwoWins: 0,
   });
+  // Messages
+  const [isOpen, setModal] = useState(false);
+  const [winMessage, setWinMessage] = useState(null);
+
   ///////////////////////////////////////////////////////////
 
   //////////////////
@@ -77,8 +81,8 @@ const App = () => {
   // ANNOUNCE WINNER //
   ///////////////////////////////
   const announceWinner = (winner) => {
-    setWinMessage(`${winner} is the winner!!`);
-    console.log(`${winner} is the winner!!`);
+    setWinMessage(`${winner} wins!!`);
+    console.log(`${winner} wins!!`);
     setModal(true);
     changeScoreBoard(winner);
   };
@@ -100,7 +104,7 @@ const App = () => {
   // JSX //
   /////////////////////////////
   const AppJSX = (
-    <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto">
+    <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto font-mono bg-gray-900">
       <Header />
       <Board
         currentPlayer={currentPlayer}

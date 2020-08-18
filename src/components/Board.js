@@ -110,7 +110,13 @@ const Board = (props) => {
   ///////////////////////////////////
   const renderSquare = (i) => {
     return (
-      <Square key={i} value={gameBoard[i]} i={i} handleClick={handleClick} />
+      <Square
+        key={i}
+        value={gameBoard[i]}
+        i={i}
+        handleClick={handleClick}
+        gameState={gameState}
+      />
     );
   };
 
@@ -118,7 +124,10 @@ const Board = (props) => {
   // JSX RETURN //
   ////////////////////////////
   return (
-    <div className="container grid grid-cols-3 border-2 border-gray-400 gap-4 p-4 w-auto rounded-lg bg-gray-100">
+    <div
+      className="container grid grid-cols-3 gap-4 p-4 w-auto rounded-lg"
+      style={{ color: "#60C5DB" }}
+    >
       {renderSquare(0)}
       {renderSquare(1)}
       {renderSquare(2)}
