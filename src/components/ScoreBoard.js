@@ -23,10 +23,10 @@ const ScoreBoard = (props) => {
               : "border border-solid border-gray-800 border-b-0"
           }`}
         >
-          <div className="score-title w-32 h-10 mt-2 flex justify-center items-center text-xs text-cyberburnorange-100">
+          <div className="score-title w-32 h-8 mt-2 flex justify-center items-center text-xs text-cyberburnorange-100">
             playerOne
           </div>
-          <div className="score-title w-32 h-10 sm:h-16 mt-1 mb-4 flex justify-center items-center rounded-md text-4xl text-cyberdesatyellow-100">
+          <div className="score-title w-32 h-8 xl:h-16 mt-1 mb-2 flex justify-center items-center rounded-md text-4xl text-cyberdesatyellow-100">
             {score.playerOneWins}
           </div>
         </div>
@@ -37,10 +37,10 @@ const ScoreBoard = (props) => {
               : "border border-solid border-gray-800 border-b-0"
           }`}
         >
-          <div className="score-title w-32 h-10 mt-2 flex justify-center items-center text-xs text-cyberburnorange-100">
+          <div className="score-title w-32 h-8 mt-2 flex justify-center items-center text-xs text-cyberburnorange-100">
             playerTwo
           </div>
-          <div className="score-title w-32 h-10 sm:h-16 mt-1 mb-4 flex justify-center items-center  rounded-md text-4xl text-cyberdesatyellow-100">
+          <div className="score-title w-32 h-8 xl:h-16 mt-1 mb-2 flex justify-center items-center  rounded-md text-4xl text-cyberdesatyellow-100">
             {score.playerTwoWins}
           </div>
         </div>
