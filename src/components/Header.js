@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="flex justify-center items-center text-2xl text-cyberhotpink-100 fixed text-opacity-75 top-0 h-24 xl:h-40">
+    <div className="flex justify-center items-center text-2xl text-cyberhotpink-100 fixed text-opacity-75 top-0 h-20 xl:h-32">
       <h1>ticTacToe</h1>
       <span className="text-cyberburnorange-100 text-opacity-75 ml-1">v1</span>
     </div>
