@@ -5,7 +5,7 @@ const ScoreBoard = (props) => {
 
   const ResetButtonJSX = (
     <button
-      className="border border-opacity-50 transition ease-in-out duration-300 transform border-cyberburnorange-100 text-cyberburnorange-100 text-opacity-75 text-xs p-1 mb-6 sm:mb-12 focus:outline-none rounded hover:scale-110 hover:border-cyberhotpink-100 hover:border-opacity-75"
+      className="border border-opacity-50 transition ease-in-out duration-300 transform border-cyberburnorange-100 text-cyberburnorange-100 text-opacity-75 text-xs p-1 mb-2 xl:mb-4 focus:outline-none rounded hover:scale-110 hover:border-cyberhotpink-100 hover:border-opacity-75"
       onClick={resetSession}
     >
       reset session
