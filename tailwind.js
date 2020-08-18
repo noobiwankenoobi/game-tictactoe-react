@@ -12,10 +12,18 @@ module.exports = {
       xl: "1280px",
     },
     colors: {
+      // CUSTOM COLORS
       cyberhotpink: { 100: "#FE0651" },
       cyberfont: { 100: "#C6EDE8" },
       cyberorange: { 100: "#FC9B0B" },
       cyberblack: { 100: "#2D3848" },
+      cyberyellow: { 100: "#FBEC09" },
+      cyberdesatblue: { 100: " #4A9998" },
+      cyberlightblue: { 100: "#53BCDC" },
+      cyberburnorange: { 100: "#C74F50" },
+      cyberdesatturq: { 100: "#81BFAD" },
+
+      // ALL STOCK
       transparent: "transparent",
       current: "currentColor",
 
@@ -123,7 +131,7 @@ module.exports = {
         900: "#44337a",
       },
       pink: {
-        100: "#Fe0651",
+        100: "#fff5f7",
         200: "#fed7e2",
         300: "#fbb6ce",
         400: "#f687b3",
@@ -208,6 +216,8 @@ module.exports = {
       inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
       outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
       none: "none",
+      mdpink:
+        "0 4px 6px -1px rgba(254, 6, 81 0.1), 0 2px 4px -1px rgba(254, 6, 81, 0.06)",
     },
     container: {},
     cursor: {

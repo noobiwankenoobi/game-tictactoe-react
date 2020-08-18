@@ -15,6 +15,8 @@ const Board = (props) => {
     setGameBoard,
   } = props;
 
+  const [winningRow, setWinningRow] = useState([]);
+
   ///////////////////
   // CHANGE PLAYER //
   /////////////////////////////
@@ -84,6 +86,11 @@ const Board = (props) => {
         gameBoard[a] === gameBoard[b] &&
         gameBoard[a] === gameBoard[c]
       ) {
+        setWinningRow(winConditions[i]);
+        console.log(
+          "winConditions[i] inside calculateWinner is ",
+          winConditions[i]
+        );
         return gameBoard[a];
       }
     }
@@ -116,6 +123,7 @@ const Board = (props) => {
         i={i}
         handleClick={handleClick}
         gameState={gameState}
+        winningRow={winningRow}
       />
     );
   };
@@ -125,7 +133,7 @@ const Board = (props) => {
   ////////////////////////////
   return (
     <div
-      className="container grid grid-cols-3 gap-4 p-4 w-auto rounded-lg"
+      className="container grid grid-cols-3 gap-4 p-4 w-auto rounded-lg fixed"
       style={{ color: "#60C5DB" }}
     >
       {renderSquare(0)}

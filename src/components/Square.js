@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 const Square = (props) => {
-  const { value, i, handleClick, gameState } = props;
+  const { value, i, handleClick, gameState, winningRow } = props;
   // STATE
   const [clicked, setClicked] = useState(false);
+  const [winnerSquare, setWinnerSquare] = useState(false);
 
-  /////////////////
-  // USE EFFECT //
+  //////////////////
+  // USE EFFECTS //
   ///////////////////////////////
   useEffect(() => {
     if (value !== "") {
@@ -23,14 +24,26 @@ const Square = (props) => {
   useEffect(() => {
     if (gameState.activeGame) {
       setClicked(false);
+      setWinnerSquare(false);
     }
   }, [gameState]);
 
+  useEffect(() => {
+    const [a, b, c] = winningRow;
+    if (a === i || b === i || c === i) {
+      setWinnerSquare(true);
+    }
+  }, [winningRow, i]);
+
+  //////////////////
+  // SQUARES JSX //
+  /////////////////////////////////
   const clickedSquareJSX = (
     <div
       onClick={() => handleClick(i)}
-      className="square flex items-center justify-center bg-gray-800 bg-opacity-25 border-8 border-cyberhotpink-100 h-32 w-32 rounded-md text-5xl"
-      // style={{ borderColor: "#FE0651" }}
+      className={`square flex items-center justify-center bg-gray-800 bg-opacity-25 border-2 border-cyberhotpink-100 h-32 w-32 rounded-md text-5xl shadow-xl ${
+        winnerSquare ? "animate-bounce" : ""
+      }`}
     >
       {value}
     </div>
@@ -39,12 +52,15 @@ const Square = (props) => {
   const emptySquareJSX = (
     <div
       onClick={() => handleClick(i)}
-      className="square flex items-center justify-center bg-gray-800 bg-opacity-25 border border-gray-800 h-32 w-32 rounded-md text-4xl shadow-md"
+      className="square flex items-center justify-center border border-cyberburnorange-100 bg-gray-800 bg-opacity-25 border-dashed border-opacity-25 h-32 w-32 rounded-md text-4xl shadow-md"
     >
       {value}
     </div>
   );
 
+  ////////////////////////
+  // SQUARES JSX LOGIC //
+  ///////////////////////////////////
   const SquareJSX = clicked ? clickedSquareJSX : emptySquareJSX;
 
   return SquareJSX;

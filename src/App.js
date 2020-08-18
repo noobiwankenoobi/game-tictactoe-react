@@ -104,7 +104,7 @@ const App = () => {
   // JSX //
   /////////////////////////////
   const AppJSX = (
-    <div className="App container h-screen w-screen flex flex-col justify-center items-center mx-auto font-mono bg-gray-900">
+    <div className="App h-screen w-screen flex flex-col justify-center items-center mx-auto font-mono bg-gray-900">
       <Header />
       <Board
         currentPlayer={currentPlayer}
@@ -124,7 +124,7 @@ const App = () => {
         winMessage={winMessage}
         resetGame={resetGame}
       />
-      <ScoreBoard score={score} />
+      <ScoreBoard score={score} currentPlayer={currentPlayer} />
     </div>
   );
 
