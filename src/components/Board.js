@@ -133,7 +133,7 @@ const Board = (props) => {
   // JSX RETURN //
   ////////////////////////////
   return (
-    <div className="flex flex-col justify-center items-center  mx-auto">
+    <div className="flex flex-col justify-center items-center  mx-auto my-auto">
       {PlayerTurnJSX}
       <div className="container grid grid-cols-3 gap-4 p-4 w-auto rounded-lg text-cyberlightblue-100">
         {renderSquare(0)}

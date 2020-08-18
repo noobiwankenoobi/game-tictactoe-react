@@ -13,7 +13,7 @@ const ScoreBoard = (props) => {
   );
 
   const ScoreBoardJSX = (
-    <div className="container flex flex-col justify-center items-center w-auto h-auto bottom-0 fixed ">
+    <div className="container flex flex-col justify-center items-center w-auto h-auto mt-auto  ">
       {ResetButtonJSX}
       <div className="container flex justify-center items-center w-auto h-auto">
         <div
