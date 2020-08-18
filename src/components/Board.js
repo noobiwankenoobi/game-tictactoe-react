@@ -14,6 +14,7 @@ const Board = (props) => {
     gameBoard,
     setGameBoard,
     resetGame,
+    handleDraw,
   } = props;
 
   const [winningRow, setWinningRow] = useState([]);
@@ -45,6 +46,23 @@ const Board = (props) => {
     }
   };
 
+  /////////////////////
+  // LOOK FOR DRAW //
+  /////////////////////////////////////
+  const lookForDraw = (gameBoard) => {
+    let checkArray = [];
+
+    checkArray = gameBoard.filter((value) => value === "X" || value === "O");
+    console.log("checkArray lenth is ", checkArray.length);
+
+    // if the array reaches length 9 and there's not already a winner, it means there's a draw
+    if (checkArray.length !== 9) {
+      return null;
+    } else {
+      return "draw";
+    }
+  };
+
   ///////////////////////
   // CALCULATE WINNER //
   ///////////////////////////////////
@@ -59,6 +77,7 @@ const Board = (props) => {
       [0, 4, 8],
       [2, 4, 6],
     ];
+    // Find the winner
     for (let i = 0; i < winConditions.length; i++) {
       const [a, b, c] = winConditions[i];
       if (
@@ -67,13 +86,10 @@ const Board = (props) => {
         gameBoard[a] === gameBoard[c]
       ) {
         setWinningRow(winConditions[i]);
-        // console.log(
-        //   "winConditions[i] inside calculateWinner is ",
-        //   winConditions[i]
-        // );
         return gameBoard[a];
       }
     }
+    // Otherwise nothing
     return null;
   };
 
@@ -82,12 +98,13 @@ const Board = (props) => {
   ///////////////////////////////////
   useEffect(() => {
     if (gameState.activeGame) {
+      const draw = lookForDraw(gameBoard);
       const winner = calculateWinner(gameBoard);
       if (winner) {
         setGameState({ activeGame: false, gameOver: true, gameWinner: winner });
         announceWinner(winner);
-      } else {
-        // console.log("No winner yet");
+      } else if (draw) {
+        handleDraw();
       }
     }
   }, [gameBoard, setGameState, currentPlayer]);

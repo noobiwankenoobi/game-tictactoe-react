@@ -35,9 +35,10 @@ const Square = (props) => {
   const clickedSquareJSX = (
     <div
       onClick={() => handleClick(i)}
-      className={`square flex items-center justify-center bg-gray-800 bg-opacity-25 border-2 border-cyberhotpink-100 border-opacity-75 h-16 w-16 xl:h-24 xl:w-24 rounded-md text-5xl  shadow-2xl ${
+      className={`square flex items-center justify-center bg-gray-800 bg-opacity-25 border-2 border-cyberhotpink-100 border-opacity-75 h-16 w-16 xl:h-24 xl:w-24 rounded-md text-5xl  shadow-2xl disabled ${
         winnerSquare ? "animate-bounce" : ""
       }`}
+      style={{ pointerEvents: "none" }}
     >
       {value}
     </div>

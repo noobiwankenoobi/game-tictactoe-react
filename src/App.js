@@ -82,6 +82,14 @@ const App = () => {
     }
   };
 
+  //////////////////
+  // HANDLE DRAW //
+  ///////////////////////////////
+  const handleDraw = () => {
+    setModal(true);
+    setWinMessage("Draw!!");
+  };
+
   //////////////////////
   // ANNOUNCE WINNER //
   ///////////////////////////////
@@ -91,6 +99,8 @@ const App = () => {
       setWinMessage(`${playerOne.name} wins!!`);
     } else if (playerTwo.symbol === winner) {
       setWinMessage(`${playerTwo.name} wins!!`);
+    } else if (winner === "draw") {
+      handleDraw();
     }
     // Then...
     setModal(true);
@@ -142,6 +152,7 @@ const App = () => {
         gameBoard={gameBoard}
         setGameBoard={setGameBoard}
         resetGame={resetGame}
+        handleDraw={handleDraw}
       />
       <AnnounceModal
         isOpen={isOpen}
