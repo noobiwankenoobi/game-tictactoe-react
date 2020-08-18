@@ -65,7 +65,7 @@ const AnnounceModal = (props) => {
           </span>
           <button
             onClick={handleClick}
-            className="font-bold py-2 px-4 bg-gray-900 bg-opacity-50 border border-cyberhotpink-100 rounded-md text-cyberburnorange-100 transition ease-in-out duration-300 transform hover:text-cyberdesatyellow-100 hover:text-opacity-75 hover:bg-cyberhotpink-100 hover:scale-110 hover:bg-opacity-50 hover:border-opacity-50"
+            className="font-bold py-2 px-4 bg-gray-900 bg-opacity-50 border border-cyberhotpink-100 rounded-md text-cyberburnorange-100 transition ease-in-out duration-300 transform hover:text-cyberdesatyellow-100 hover:text-opacity-75 hover:bg-cyberhotpink-100 hover:scale-110 hover:bg-opacity-50 hover:border-opacity-50 focus:outline-none"
           >
             next game
           </button>
@@ -91,7 +91,7 @@ const AnnounceModal = (props) => {
           </span>
           <button
             onClick={startNextGame}
-            className="font-bold py-2 px-4 bg-gray-900 bg-opacity-50 border border-cyberhotpink-100 rounded-md text-cyberburnorange-100 transition ease-in-out duration-300 transform hover:text-cyberdesatyellow-100 hover:text-opacity-75 hover:bg-cyberhotpink-100 hover:scale-110 hover:bg-opacity-50 hover:border-opacity-50"
+            className="font-bold py-2 px-4 bg-gray-900 bg-opacity-50 border border-cyberhotpink-100 rounded-md text-cyberburnorange-100 transition ease-in-out duration-300 transform hover:text-cyberdesatyellow-100 hover:text-opacity-75 hover:bg-cyberhotpink-100 hover:scale-110 hover:bg-opacity-50 hover:border-opacity-50 focus:outline-none"
           >
             start
           </button>
