@@ -102,6 +102,20 @@ const App = () => {
     // setCurrentPlayer("playerOne");
   };
 
+  ////////////////////
+  // RESET SESSION //
+  ///////////////////////////////
+  const resetSession = () => {
+    localStorage.setItem("playerOneWins", "0");
+    localStorage.setItem("playerTwoWins", "0");
+    resetGame();
+    setScore({
+      playerOneWins: 0,
+      playerTwoWins: 0,
+    });
+    setCurrentPlayer("playerOne");
+  };
+
   //////////
   // JSX //
   /////////////////////////////
@@ -129,7 +143,11 @@ const App = () => {
         currentPlayer={currentPlayer}
         setCurrentPlayer={setCurrentPlayer}
       />
-      <ScoreBoard score={score} currentPlayer={currentPlayer} />
+      <ScoreBoard
+        score={score}
+        currentPlayer={currentPlayer}
+        resetSession={resetSession}
+      />
     </div>
   );
 
