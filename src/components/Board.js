@@ -31,8 +31,6 @@ const Board = (props) => {
   // HANDLE CLICK //
   /////////////////////////////
   const handleClick = (i) => {
-    // console.log("handleClick is running at index ", i);
-    // console.log("gameBoard is ", gameBoard);
     if (currentPlayer === "playerOne") {
       const board = gameBoard;
       board[i] = playerOne.symbol;
@@ -51,10 +49,7 @@ const Board = (props) => {
   /////////////////////////////////////
   const lookForDraw = (gameBoard) => {
     let checkArray = [];
-
     checkArray = gameBoard.filter((value) => value === "X" || value === "O");
-    console.log("checkArray lenth is ", checkArray.length);
-
     // if the array reaches length 9 and there's not already a winner, it means there's a draw
     if (checkArray.length !== 9) {
       return null;
