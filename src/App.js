@@ -44,12 +44,21 @@ const App = () => {
   //////////////////////////////////////
   // Sets the score from any existing localStorage after pageload and refresh
   useEffect(() => {
+    // Define
     let p1winsFromStorage = parseInt(localStorage.getItem("playerOneWins"));
     let p2winsFromStorage = parseInt(localStorage.getItem("playerTwoWins"));
-    setScore({
-      playerOneWins: p1winsFromStorage,
-      playerTwoWins: p2winsFromStorage,
-    });
+    // If they don't exist yet...
+    if (!p1winsFromStorage && !p2winsFromStorage) {
+      setScore({
+        playerOneWins: 0,
+        playerTwoWins: 0,
+      });
+    } else {
+      setScore({
+        playerOneWins: p1winsFromStorage,
+        playerTwoWins: p2winsFromStorage,
+      });
+    }
   }, []);
 
   // Sets the current score to localStorage
