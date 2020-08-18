@@ -66,13 +66,9 @@ const App = () => {
   // CHANGE SCOREBOARD //
   ////////////////////////////////////////
   const changeScoreBoard = (winner) => {
-    console.log("winner inside changeScoreBoard is ", winner);
-
     if (playerOne.symbol === winner) {
-      console.log("changing player one score is running");
       setScore({ ...score, playerOneWins: score.playerOneWins + 1 });
     } else if (playerTwo.symbol === winner) {
-      console.log("changing player one score is running");
       setScore({ ...score, playerTwoWins: score.playerTwoWins + 1 });
     }
   };
